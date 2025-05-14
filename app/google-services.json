@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "638433200552",
+    "project_id": "fittracker-f9447",
+    "storage_bucket": "fittracker-f9447.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638433200552:android:20fb607244cc495d15759d",
+        "android_client_info": {
+          "package_name": "com.fittracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj4ab6zWNX4I6hAZ7ZUdVvdntXXsYivuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

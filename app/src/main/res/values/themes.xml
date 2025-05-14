@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FitTracker" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@android:color/system_accent1_600</item>
+        <item name="colorPrimaryVariant">@android:color/system_accent1_700</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@android:color/system_accent2_600</item>
+        <item name="colorSecondaryVariant">@android:color/system_accent2_700</item>
+        <item name="colorOnSecondary">@android:color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Theme.FitTracker" parent="Base.Theme.FitTracker" />
+</resources>

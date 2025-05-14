@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">FitTracker</string>
+    <string name="gcm_defaultSenderId" translatable="false">638433200552</string>
+    <string name="google_api_key" translatable="false">AIzaSyAj4ab6zWNX4I6hAZ7ZUdVvdntXXsYivuI</string>
+    <string name="google_app_id" translatable="false">1:638433200552:android:20fb607244cc495d15759d</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAj4ab6zWNX4I6hAZ7ZUdVvdntXXsYivuI</string>
+    <string name="google_maps_key">@string/google_maps_key</string>
+    <string name="google_storage_bucket" translatable="false">fittracker-f9447.firebasestorage.app</string>
+    <string name="project_id" translatable="false">fittracker-f9447</string>
+    <style name="Base.Theme.FitTracker" parent="Theme.Material3.Light.NoActionBar">
+        
+        <item name="colorPrimary">@android:color/system_accent1_600</item>
+        <item name="colorPrimaryVariant">@android:color/system_accent1_700</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        
+        <item name="colorSecondary">@android:color/system_accent2_600</item>
+        <item name="colorSecondaryVariant">@android:color/system_accent2_700</item>
+        <item name="colorOnSecondary">@android:color/black</item>
+        
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+    <style name="Theme.FitTracker" parent="Base.Theme.FitTracker"/>
+</resources>
