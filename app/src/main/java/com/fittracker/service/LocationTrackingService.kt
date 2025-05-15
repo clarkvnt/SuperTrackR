@@ -26,6 +26,13 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import com.fittracker.utils.AchievementStorage
+import com.fittracker.api.ApiClient
+import com.fittracker.models.Workout
+import com.fittracker.models.LocationPoint
+import android.util.Log
+import java.util.Date
+import com.fittracker.storage.LocalWorkoutStorage
+import android.content.Context
 
 class LocationTrackingService : Service(), SensorEventListener {
     private val binder = LocalBinder()
@@ -50,6 +57,8 @@ class LocationTrackingService : Service(), SensorEventListener {
     private var heartRateSum: Int = 0
     private var heartRateCount: Int = 0
 
+    private lateinit var workoutStorage: LocalWorkoutStorage
+
     inner class LocalBinder : Binder() {
         fun getService(): LocationTrackingService = this@LocationTrackingService
     }
@@ -60,6 +69,7 @@ class LocationTrackingService : Service(), SensorEventListener {
         setupLocationCallback()
         createNotificationChannel()
         setupHeartRateSensor()
+        workoutStorage = LocalWorkoutStorage(applicationContext)
     }
 
     private fun setupHeartRateSensor() {
@@ -196,6 +206,43 @@ class LocationTrackingService : Service(), SensorEventListener {
             highestCalories,
             highestHeartRate
         )
+
+        // Save workout to local storage
+        saveWorkoutLocally(stats)
+    }
+
+    private fun saveWorkoutLocally(stats: TrackingStats) {
+        serviceScope.launch {
+            try {
+                val auth = FirebaseAuth.getInstance()
+                val userId = auth.currentUser?.uid ?: return@launch
+                
+                val workout = Workout(
+                    userId = userId,
+                    startTime = Date(startTime),
+                    endTime = Date(System.currentTimeMillis()),
+                    distance = stats.distance,
+                    duration = stats.duration,
+                    steps = stats.steps,
+                    averageSpeed = stats.speed,
+                    calories = stats.calories.toInt(),
+                    averageHeartRate = stats.averageHeartRate,
+                    maxHeartRate = stats.maxHeartRate,
+                    locations = stats.locations.map { location ->
+                        LocationPoint(
+                            latitude = location.latitude,
+                            longitude = location.longitude,
+                            timestamp = Date(location.time)
+                        )
+                    }
+                )
+
+                val workoutId = workoutStorage.saveWorkout(workout)
+                Log.d("LocationTrackingService", "Workout saved locally with ID: $workoutId")
+            } catch (e: Exception) {
+                Log.e("LocationTrackingService", "Error saving workout locally", e)
+            }
+        }
     }
 
     private fun createNotificationChannel() {

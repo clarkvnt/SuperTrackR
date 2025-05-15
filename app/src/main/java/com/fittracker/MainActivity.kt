@@ -19,10 +19,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.List
 import com.fittracker.ui.screens.LoginScreen
 import com.fittracker.ui.screens.RegisterScreen
 import com.fittracker.ui.screens.TrackingScreen
 import com.fittracker.ui.screens.ProfileScreen
+import com.fittracker.ui.screens.WorkoutManagementScreen
 import com.fittracker.ui.theme.FitTrackerTheme
 import com.fittracker.viewmodel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -79,6 +81,9 @@ fun FitTrackerNav() {
                     TopAppBar(
                         title = { Text("FitTracker") },
                         actions = {
+                            IconButton(onClick = { navController.navigate("workout_management") }) {
+                                Icon(Icons.Default.List, contentDescription = "Manage Workouts")
+                            }
                             IconButton(onClick = { navController.navigate("profile") }) {
                                 Icon(Icons.Default.AccountCircle, contentDescription = "Profile")
                             }
@@ -88,6 +93,11 @@ fun FitTrackerNav() {
             ) { padding ->
                 TrackingScreen()
             }
+        }
+        composable("workout_management") {
+            WorkoutManagementScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
         composable("profile") {
             ProfileScreen(
