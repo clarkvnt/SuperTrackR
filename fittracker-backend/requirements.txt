@@ -1,0 +1,15 @@
+# For Node.js/Express backend, use package.json for dependencies.
+# If you need a requirements.txt for Python, here is an example for Firebase Admin SDK:
+
+firebase-admin==6.0.1
+flask==2.2.2
+
+# For Node.js, see package.json:
+# {
+#   "dependencies": {
+#     "express": "^4.18.2",
+#     "mongoose": "^7.0.3",
+#     "cors": "^2.8.5",
+#     "body-parser": "^1.20.2"
+#   }
+# } 
